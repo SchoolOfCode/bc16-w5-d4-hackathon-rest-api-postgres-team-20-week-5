@@ -8,6 +8,22 @@ Throughout the following decades, zombies shuffled their way through various ite
 
 the history of zombie films is a testament to humanity's enduring fascination with the macabre and our collective anxieties about mortality and societal collapse. As the genre continues to evolve and adapt to changing times, one thing remains certain: zombies will continue to haunt our screens and our nightmares for years to come.
 
-**FILE STRUCTURE**
+**FILE STRUCTURE || JOB**
 
-- [text](db/scripts/reset-database.js)
+- **.env** stores the environment variables
+
+- **reset-database.js:** Imports pool ( which is part of pg) from [index.js]. Uses pool to to connect and query the database (db) for SQL functions. Deletes all data and table structure. Builds new tables and populates db with test data.
+
+- **index.js:** Imports pg from pg module. connects to the database and exports the [pool_object] to be used for db queries.
+
+- **app.js** Serves as a basic API router for the resources held in the db. Its main functions listen for HTTP requests to Create, Read, Update and Delete. The file also employs helper functions imported from[resource_one.js] and [resource_two.js].
+
+- **resource_one.js / resource_two.js** These files primary function is to query the database using the pool function imported from [index.js]. They are exported and used by [app.js] for the http requests. Each function has a corresponding role in the API's C.R.U.D. functions.
+
+**TODO**
+
+1. Sign up for a db account and store the PW and access strings in the .env file
+2. npm install packages
+3. Test connection to the db
+4. Edit reset-database.js
+5. Write app.js API routes and corresponding helper functions.
