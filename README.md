@@ -13,10 +13,10 @@ the history of zombie films is a testament to humanity's enduring fascination wi
 - **.env** stores the environment variables
 
 - **reset-database.js:**
-  Imports pool ( which is part of pg) from _index.js_. Uses pool to to connect and query the database (db) for SQL functions. Deletes all data and table structure. Builds new tables and populates db with test data.
+  Imports the pool function ( which is part of pg) from _index.js_. Uses pool to to connect and query the database (db) with the SQL language. Deletes all data and table structure. Builds new tables and populates db with test data.
 
 - **index.js:**
-  Imports pg from pg module. connects to the database and exports the _pool_object_ to be used for db queries.
+  Imports pg from pg module. connects to the database and exports the _pool_object_ by calling the pg function. It is then used for db queries.
 
 - **app.js**
   Serves as a basic API router for the resources held in the db. Its main functions listen for HTTP requests to Create, Read, Update and Delete. The file also employs helper functions imported from _resource_one.js_ and _resource_two.js_.
