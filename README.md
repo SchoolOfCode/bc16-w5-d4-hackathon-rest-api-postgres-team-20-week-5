@@ -8,7 +8,7 @@ Throughout the following decades, zombies shuffled their way through various ite
 
 the history of zombie films is a testament to humanity's enduring fascination with the macabre and our collective anxieties about mortality and societal collapse. As the genre continues to evolve and adapt to changing times, one thing remains certain: zombies will continue to haunt our screens and our nightmares for years to come.
 
-**FILE STRUCTURE || JOB**
+**FILE STRUCTURE**
 
 - **.env** stores the environment variables
 
