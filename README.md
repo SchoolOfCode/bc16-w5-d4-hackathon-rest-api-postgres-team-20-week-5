@@ -12,13 +12,17 @@ the history of zombie films is a testament to humanity's enduring fascination wi
 
 - **.env** stores the environment variables
 
-- **reset-database.js:** Imports pool ( which is part of pg) from [index.js]. Uses pool to to connect and query the database (db) for SQL functions. Deletes all data and table structure. Builds new tables and populates db with test data.
+- **reset-database.js:**
+  Imports pool ( which is part of pg) from _index.js_. Uses pool to to connect and query the database (db) for SQL functions. Deletes all data and table structure. Builds new tables and populates db with test data.
 
-- **index.js:** Imports pg from pg module. connects to the database and exports the [pool_object] to be used for db queries.
+- **index.js:**
+  Imports pg from pg module. connects to the database and exports the _pool_object_ to be used for db queries.
 
-- **app.js** Serves as a basic API router for the resources held in the db. Its main functions listen for HTTP requests to Create, Read, Update and Delete. The file also employs helper functions imported from[resource_one.js] and [resource_two.js].
+- **app.js**
+  Serves as a basic API router for the resources held in the db. Its main functions listen for HTTP requests to Create, Read, Update and Delete. The file also employs helper functions imported from _resource_one.js_ and _resource_two.js_.
 
-- **resource_one.js / resource_two.js** These files primary function is to query the database using the pool function imported from [index.js]. They are exported and used by [app.js] for the http requests. Each function has a corresponding role in the API's C.R.U.D. functions.
+- **resource_one.js / resource_two.js**
+  These files primary function is to query the database using the pool function imported from _index.js_. They are exported and used by _app.js_ for the http requests. Each function has a corresponding role in the API's C.R.U.D. functions.
 
 **TODO**
 
