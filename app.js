@@ -2,7 +2,11 @@
 import express from "express";
 
 // Import your helper functions for your first resource here
+<<<<<<< HEAD
 import { getMovieById } from "./movies.js";
+=======
+import { getMovies } from "./movies.js";
+>>>>>>> 9026b3972e35ec5717c683baf5e361e46ab2889e
 
 // Import your helper functions for your second resource here
 // import {
@@ -23,6 +27,7 @@ app.use(express.json()); // express.json() middleware is used to parse incoming 
 // Resource One Route Handlers
 
 // Endpoint to retrieve all <resource_one>
+<<<<<<< HEAD
 app.get("/resourceone/", async function (req, res) {
 	console.log("I'm alive");
 	res.status(200).send("I'm alive!");
@@ -43,6 +48,20 @@ app.get("/movies/:id", async function (req, res) {
 
 	res.status(200).json({ status: "success", data: movie });
 });
+=======
+app.get("/movies/", async function (req, res) {
+  try {
+    const movies = await getMovies();
+    res.status(200).json({ success: true, payload: movies });
+  } catch (error) {
+    console.error(error);
+    res.status(404).send("No such directory");
+  }
+});
+
+// Endpoint to retrieve a <resource_one> by id
+app.get("/resourceone/:id", async function (req, res) {});
+>>>>>>> 9026b3972e35ec5717c683baf5e361e46ab2889e
 
 // Endpoint to create a new <resource_one>
 app.post("/resourceone/", async function (req, res) {});
@@ -57,8 +76,13 @@ app.delete("/resourceone/:id", async function (req, res) {});
 
 // Endpoint to retrieve all <resource_twos>
 app.get("/resourcetwo/", async function (req, res) {
+<<<<<<< HEAD
 	const authors = await getAuthors();
 	res.status(200).json({ status: "success", data: authors });
+=======
+  const authors = await getAuthors();
+  res.status(200).json({ status: "success", data: authors });
+>>>>>>> 9026b3972e35ec5717c683baf5e361e46ab2889e
 });
 
 // Endpoint to retrieve a <resource_twos> by id
@@ -75,5 +99,9 @@ app.delete("/resourcetwo/:id", async function (req, res) {});
 
 // Start the server and listen on the specified port
 app.listen(PORT, function () {
+<<<<<<< HEAD
 	console.log(`Server listening on port ${PORT}`);
+=======
+  console.log(`Server listening on port ${PORT}`);
+>>>>>>> 9026b3972e35ec5717c683baf5e361e46ab2889e
 });
