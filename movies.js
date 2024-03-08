@@ -1,12 +1,15 @@
 // Import the 'pool' object so our helper functions can interact with the PostgreSQL database
 import { pool } from "./db/index.js";
 
-export async function getResourceOne() {
+export async function getMovies() {
   try {
     const queryText = "SELECT * FROM movies ORDER BY id";
     const movies = await pool.query(queryText);
     return movies.rows;
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+    return "error";
+  }
   // Query the database and return all resource ones
 }
 
