@@ -4,60 +4,57 @@ import { pool } from "../index.js";
 // >>> FEEL FREE TO CHANGE IT TO MAKE YOUR OWN RESOURCES (TABLES AND PROPERTIES) - YOU DON'T HAVE TO USE ALBUMS AND ARTISTS <<<
 
 async function resetDatabase() {
-	try {
-		// Drop existing tables if they exist
-		await pool.query(`
+  try {
+    // Drop existing tables if they exist
+    await pool.query(`
         DROP TABLE IF EXISTS movies CASCADE;
         DROP TABLE IF EXISTS directors CASCADE;
     `);
 
-		await pool.query(`
+    await pool.query(`
     CREATE TABLE directors (
         id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
-        date_of_birth DATE,
+        date_of_birth DATE NOT NULL,
         country VARCHAR(255) NOT NULL
     );
 `);
 
-		// Create the artists table
-		await pool.query(`
+    // Create the artists table
+    await pool.query(`
         CREATE TABLE movies (
             id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-            title VARCHAR(255) NOT NULL,
-            release_date DATE,
-            rating INT NOT NULL,
-            director_id INT REFERENCES directors(id)
+            title VARCHAR(255) NOT NULL
         );
     `);
 
-		// Create the albums table with a foreign key to the artists table
+    // Create the albums table with a foreign key to the artists table
 
-		// Seed the artists table
-		await pool.query(`
+    // Seed the artists table
+    await pool.query(`
         INSERT INTO directors (name, date_of_birth, country)
         VALUES 
             ('Dua Lipa', '1930-06-26', 'Argentina'),
             ('Jay-Z', '1998-07-02', 'USA');
     `);
 
-		// Seed the albums table
-		await pool.query(`
-        INSERT INTO movies (title, release_date, rating, director_id)
+    // Seed the albums table
+    await pool.query(`
+        INSERT INTO movies (title)
         VALUES 
-            ('Zombie Blood Bath', '2017-06-02', 4, 1),
-            ('Night of the Living Dead', '2020-03-27', 5, 1),
-            ('Reasonable Doubt', '1996-06-25', 3, 2),
-            ('The Blueprint', '2001-09-11', 4, 2);
+            ('Zombie Blood Bath'),
+            ('Night of the Living Dead'),
+            ('Reasonable Doubt'),
+            ('The Blueprint');
     `);
 
-		console.log("Database reset successful");
-	} catch (error) {
-		console.error("Database reset failed: ", error);
-	} finally {
-		// End the pool
-		await pool.end();
-	}
+    console.log("Database reset successful");
+  } catch (error) {
+    console.error("Database reset failed: ", error);
+  } finally {
+    // End the pool
+    await pool.end();
+  }
 }
 
 await resetDatabase();

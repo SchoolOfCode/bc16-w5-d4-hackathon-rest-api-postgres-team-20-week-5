@@ -2,7 +2,7 @@
 import express from "express";
 
 // Import your helper functions for your first resource here
-import { getMovies, getMovieById } from "./movies.js";
+import { getMovies, getMovieById, createMovie } from "./movies.js";
 
 // Import your helper functions for your second resource here
 // import {
@@ -49,7 +49,16 @@ app.get("/movies/:id", async function (req, res) {
 });
 
 // Endpoint to create a new <resource_one>
-app.post("/resourceone/", async function (req, res) {});
+app.post("/movies/", async function (req, res) {
+  try {
+    const movieData = req.body;
+    const addedMovie = await createMovie(movieData);
+    res.status(201).json({ success: true, payload: addedMovie });
+  } catch (error) {
+    console.log(error);
+    return "error";
+  }
+});
 
 // Endpoint to update a specific <resource_one> by id
 app.patch("/resourceone/:id", async function (req, res) {});

@@ -20,7 +20,22 @@ export async function getMovieById(id) {
   return movie.rows[0] || null;
 }
 
-export async function createResourceOne(resource) {
+export async function createMovie(movies) {
+  try {
+    const { title } = movies;
+    const queryText = `
+    INSERT INTO movies
+    (title)
+    VALUES ($1)
+    RETURNING *`;
+
+    const values = [title];
+    const results = await pool.query(queryText, values);
+    return results.rows[0];
+  } catch (error) {
+    console.error(error);
+    return "errorzzz";
+  }
   // Query the database to create an resource and return the newly created resource
 }
 
